@@ -29,6 +29,9 @@ const data = readPersistent();
 
 const validateAccessToken = (token) => validate(token, data.signUpTokens);
 
+/**
+ * @type {boolean}
+ */
 const isSuccessAuth = validateAccessToken(data.accessToken);
 
 if (!isSuccessAuth) {
@@ -51,6 +54,11 @@ Vue.directive('focus', {
   },
 });
 
+/**
+ * Where card will be placed in board.
+ *
+ * @type {null|{boardIndex, columnIndex, cardIndex}}
+ */
 let cardMovingPlacement;
 
 const store = new Vuex.Store({
