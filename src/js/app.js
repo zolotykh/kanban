@@ -372,9 +372,5 @@ new Vue({
   store,
   router,
   template: '<app/>',
-  mounted() {
-    // if (!isSuccessAuth) {
-    //   router.push('/login');
-    // }
-  },
+  mounted() {},
 });
