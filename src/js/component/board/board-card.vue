@@ -5,7 +5,7 @@
         <input v-model="card.name"
                v-if="editable"
                v-focus
-               @blur="blur"
+               @blur="onBlur"
                class="board-card__name-input">
 
         <span v-else class="board-card__name" @click.stop.prevent="edit">
@@ -34,7 +34,7 @@
     methods: {
       ...mapActions(['updateCard']),
 
-      blur() {
+      onBlur() {
         this.editable = false;
 
         this.updateCard({
@@ -48,7 +48,7 @@
         this.editable = true;
       },
       submit() {
-        this.blur();
+        this.onBlur();
       },
     }
   }
