@@ -6,9 +6,14 @@ export { validate, generateToken };
 /**
  *
  * @param {string} token
+ * @param {string[]} [signUpTokens]
  * @returns {boolean}
  */
-function validate(token) {
+function validate(token, signUpTokens) {
+  if (signUpTokens && signUpTokens.includes(token)) {
+    return true;
+  }
+
   return ACCESS_TOKEN === token;
 }
 

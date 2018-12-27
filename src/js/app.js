@@ -27,7 +27,9 @@ export {};
 
 const data = readPersistent();
 
-const isSuccessAuth = validate(data.accessToken);
+const validateAccessToken = (token) => validate(token, data.signUpTokens);
+
+const isSuccessAuth = validateAccessToken(data.accessToken);
 
 if (!isSuccessAuth) {
   delete data.accessToken;
@@ -235,10 +237,22 @@ const store = new Vuex.Store({
     displayedColumns({ commit }) {
       commit('displayedColumns');
     },
-    logIn({ commit }, { login, password }) {
+    signUp({ commit, state }, { login, password }) {
+      const isSuccessAuth = true;
       const accessToken = generateToken(login, password);
 
-      const isSuccessAuth = validate(accessToken);
+      state.signUpTokens = state.signUpTokens || [];
+
+      state.signUpTokens.push(accessToken);
+
+      commit('authorizationState', { accessToken, isSuccessAuth, login });
+
+      router.push(router.history.current.query.redirect || '/');
+    },
+    signIn({ commit }, { login, password }) {
+      const accessToken = generateToken(login, password);
+
+      const isSuccessAuth = validateAccessToken(accessToken);
 
       if (!isSuccessAuth) {
         login = null;
