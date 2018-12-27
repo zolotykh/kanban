@@ -69,6 +69,11 @@ const store = new Vuex.Store({
 
     displayedColumns: null,
   },
+  getters: {
+    isLoginError(state) {
+      return state.accessToken && !state.isSuccessAuth;
+    },
+  },
   mutations: {
     displayedColumns(state) {
       if (state.hoveredColumn) {
@@ -214,6 +219,12 @@ const store = new Vuex.Store({
     },
     updateCard({ commit }, payload) {
       commit('updateCard', payload);
+    },
+    columnMovingEnd({ commit }) {
+      commit('columnMovingEnd');
+    },
+    cardMovingEnd({ commit }) {
+      commit('cardMovingEnd');
     },
     logIn({ commit }, { login, password }) {
       const accessToken = generateToken(login, password);

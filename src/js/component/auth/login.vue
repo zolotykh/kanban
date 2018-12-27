@@ -37,6 +37,8 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex';
+
   export default {
     data() {
       return {
@@ -46,9 +48,7 @@
       };
     },
     computed: {
-      isLoginError() {
-        return this.$store.state.accessToken && !this.$store.state.isSuccessAuth;
-      },
+      ...mapGetters(['isLoginError']),
     },
     methods: {
       logIn() {

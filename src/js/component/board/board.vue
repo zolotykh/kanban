@@ -21,7 +21,7 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex';
+  import { mapActions, mapState } from 'vuex';
   import BoardColumns from './board-columns';
   import BoardColumnMovable from "./board-column-movable";
   import BoardCardMovable from "./board-card-movable";
@@ -86,10 +86,10 @@
 
       this.onMouseUp = (evt) => {
         if (this.readyForColumnMoving) {
-          this.$store.commit('columnMovingEnd');
+          this.columnMovingEnd();
         }
         else if (this.readyForCardMoving) {
-          this.$store.commit('cardMovingEnd');
+          this.cardMovingEnd();
         }
       };
 
@@ -101,6 +101,8 @@
       document.removeEventListener('mouseup', this.onMouseUp);
     },
     methods: {
+      ...mapActions(['columnMovingEnd', 'cardMovingEnd']),
+
       blurBoardName(evt) {
         evt.target.blur();
       },
