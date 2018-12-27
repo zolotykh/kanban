@@ -1,7 +1,7 @@
 <template>
   <div class="login">
-    <form @submit.prevent="logIn" class="login__form">
-      <h1>Authorization</h1>
+    <form @submit.prevent="_logIn" class="login__form">
+      <h1>Log in</h1>
 
       <div class="form-group mt-4">
         <label for="login">Login</label>
@@ -28,7 +28,11 @@
       </div>
 
       <div class="alert alert-danger mt-3" role="alert" v-if="isLoginError">
-        Authorization error: incorrect login or password
+        <p>Authorization error: incorrect login or password.</p>
+
+        <div>
+          To see demo use <strong>omega-r</strong> and <strong>demo</strong>.
+        </div>
       </div>
 
       <button type="submit" class="btn btn-success">Login</button>
@@ -37,7 +41,7 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
+  import { mapActions, mapGetters, mapState } from 'vuex';
 
   export default {
     data() {
@@ -49,20 +53,24 @@
     },
     computed: {
       ...mapGetters(['isLoginError']),
+      ...mapState(['isSuccessAuth', 'boards'])
     },
     methods: {
-      logIn() {
-        this.$store.dispatch('logIn', {
+      ...mapActions(['logIn']),
+      _logIn() {
+        this.logIn({
           login: this.login,
           password: this.password,
           remember: this.remember,
         });
 
-        this.$refs.login.focus();
+        if (!this.isSuccessAuth) {
+          this.$refs.login.focus()
+        }
       },
     },
     created() {
-      if (this.$store.state.isSuccessAuth) {
+      if (this.isSuccessAuth) {
         this.$router.push('/');
       }
     },
