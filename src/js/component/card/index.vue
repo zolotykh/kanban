@@ -16,7 +16,7 @@
         <input v-if="titleEditing"
                v-focus
                v-model="card.name"
-               @keydown.prevent.enter="blurMeAndUpdate"
+               @keydown.prevent.enter="blurInputAndUpdateCard"
                @blur="updateCard"
                type="text"
                class="card__title-input">
@@ -32,8 +32,8 @@
                 v-model="card.description"
                 @input="onDescriptionInput"
                 @blur="updateCard"
-                @keydown.ctrl.enter="blurMeAndUpdate"
-                @keydown.meta.enter="blurMeAndUpdate"
+                @keydown.ctrl.enter="blurInputAndUpdateCard"
+                @keydown.meta.enter="blurInputAndUpdateCard"
                 class="card__description"></textarea>
 
       <div class="card__actions">
@@ -57,12 +57,26 @@
       };
     },
     computed: {
+      /**
+       *
+       * @returns {object}
+       */
       column() {
         return this.$store.state.boards[this.boardIndex].columns[this.columnIndex];
       },
+
+      /**
+       *
+       * @returns {object}
+       */
       card() {
         return this.column.cards[this.cardIndex];
       },
+
+      /**
+       *
+       * @returns {{boardIndex: NumberConstructor, columnIndex: NumberConstructor, cardIndex: NumberConstructor}}
+       */
       cardPath() {
         return {
           boardIndex: this.boardIndex,
@@ -78,7 +92,7 @@
       toggleEditTitle() {
         this.titleEditing = !this.titleEditing;
       },
-      blurMeAndUpdate(evt) {
+      blurInputAndUpdateCard(evt) {
         evt.target.blur();
 
         this.updateCard();
@@ -92,9 +106,9 @@
         });
       },
       onDescriptionInput() {
-        this.descriptionHeight();
+        this.setDescriptionHeight();
       },
-      descriptionHeight() {
+      setDescriptionHeight() {
         const target = this.$refs.description;
 
         target.style.height = '';
@@ -118,7 +132,7 @@
       document.addEventListener('keydown', this.onKeyDown);
     },
     mounted() {
-      this.descriptionHeight();
+      this.setDescriptionHeight();
     },
     beforeDestroy() {
       document.removeEventListener('keydown', this.onKeyDown);
