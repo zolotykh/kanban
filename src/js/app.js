@@ -61,7 +61,10 @@ Vue.directive('focus', {
  */
 let cardMovingPlacement;
 
+const storeWritePersistentPlugin = (store) => store.subscribe((mutation, state) => writePersistent(Object.assign(data, state)));
+
 const store = new Vuex.Store({
+  plugins: [storeWritePersistentPlugin],
   state: {
     boards: data.boards,
     accessToken: data.accessToken,
@@ -278,10 +281,6 @@ const store = new Vuex.Store({
       router.push('/login');
     },
   },
-});
-
-store.subscribe((mutation, state) => {
-  writePersistent(Object.assign(data, state));
 });
 
 EventBus.$on(EVENT_CARD_MOVING_PLACEMENT, (placement) => {
