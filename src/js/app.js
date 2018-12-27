@@ -372,5 +372,4 @@ new Vue({
   store,
   router,
   template: '<app/>',
-  mounted() {},
 });
