@@ -29,7 +29,7 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex';
+  import { mapActions, mapState } from 'vuex';
   import ActionsToggle from './utils/actions-toggle';
 
   export default {
@@ -54,9 +54,7 @@
     mounted() {
     },
     methods: {
-      addBoard() {
-        this.$store.dispatch('addBoard');
-      },
+      ...mapActions(['addBoard']),
       removeBoard(boardIndex) {
         this.$store.dispatch('removeBoard', { boardIndex });
       },

@@ -21,7 +21,7 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex';
+  import { mapActions, mapState } from 'vuex';
 
   export default {
     computed: {
@@ -34,9 +34,7 @@
       },
     },
     methods: {
-      logout() {
-        this.$store.dispatch('logout');
-      },
+      ...mapActions(['logout']),
     },
   };
 </script>
