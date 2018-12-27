@@ -14,7 +14,7 @@
   "keywords": [],
   "author": "Alexander Zolotykh",
   "license": "UNLICENSED",
-  "private": true,
+  "private": false,
   "devDependencies": {
     "@vue/component-compiler-utils": "^2.3.1",
     "@vue/test-utils": "^1.0.0-beta.27",
