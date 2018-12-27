@@ -64,6 +64,7 @@ let cardMovingPlacement;
 const storeWritePersistentPlugin = (store) => store.subscribe((mutation, state) => writePersistent(Object.assign(data, state)));
 
 const store = new Vuex.Store({
+  strict: false,
   plugins: [storeWritePersistentPlugin],
   state: {
     boards: data.boards,
