@@ -3,6 +3,11 @@ export {
   throttle,
 }
 
+/**
+ *
+ * @param {HTMLElement} Element
+ * @returns {{top: number, left: number}}
+ */
 function getElementOffset(Element) {
   const rect = Element.getBoundingClientRect();
 
@@ -12,6 +17,13 @@ function getElementOffset(Element) {
   };
 }
 
+/**
+ *
+ * @param {number} milliseconds
+ * @param {function} callback
+ * @param {null|object} [ctx]
+ * @returns {Function}
+ */
 function throttle(milliseconds, callback, ctx) {
   const getTime = () => new Date().getTime();
   let time = getTime();
