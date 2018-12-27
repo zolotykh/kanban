@@ -51,8 +51,6 @@
         };
       },
     },
-    mounted() {
-    },
     methods: {
       ...mapActions(['addBoard']),
       removeBoard(boardIndex) {

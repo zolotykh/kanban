@@ -98,8 +98,8 @@ const store = new Vuex.Store({
     hoveredCard(state, column) {
       state.hoveredCard = column;
     },
-    movableCard(state, column) {
-      state.movableCard = column;
+    movableCard(state, card) {
+      state.movableCard = card;
     },
     readyForColumnMoving(state, bool) {
       state.readyForColumnMoving = !!bool;
@@ -217,6 +217,9 @@ const store = new Vuex.Store({
     removeCard({ commit }, payload) {
       commit('removeCard', payload);
     },
+    updateColumn({ commit }, payload) {
+      commit('updateColumn', payload);
+    },
     updateCard({ commit }, payload) {
       commit('updateCard', payload);
     },
@@ -225,6 +228,12 @@ const store = new Vuex.Store({
     },
     cardMovingEnd({ commit }) {
       commit('cardMovingEnd');
+    },
+    movableCard({ commit }, card) {
+      commit(card);
+    },
+    displayedColumns({ commit }) {
+      commit('displayedColumns');
     },
     logIn({ commit }, { login, password }) {
       const accessToken = generateToken(login, password);

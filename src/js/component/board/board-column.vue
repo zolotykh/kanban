@@ -6,7 +6,7 @@
           v-if="nameEditing"
           v-model="column.name"
           v-focus
-          @blur="updateColumn"
+          @blur="_updateColumn"
           @keypress.enter.prevent="blur"
           type="text"
           class="board-column__name-input"/>
@@ -17,7 +17,7 @@
 
         <ul class="actions actions--top-right">
           <li class="actions__action">
-            <button class="btn btn-sm btn-danger" @click.prevent.stop="removeColumn">Remove column</button>
+            <button class="btn btn-sm btn-danger" @click.prevent.stop="_removeColumn">Remove column</button>
           </li>
         </ul>
       </form>
@@ -35,7 +35,7 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex';
+  import { mapActions, mapState } from 'vuex';
   import BoardCards from './board-cards';
   import BoardCardPlaceholder from './board-card-placeholder';
   import ActionsToggle from '../utils/actions-toggle';
@@ -61,8 +61,10 @@
       }),
     },
     methods: {
+      ...mapActions(['addCard', 'updateColumn', 'removeColumn']),
+
       createCard() {
-        this.$store.dispatch('addCard', {
+        this.addCard({
           boardIndex: this.boardIndex,
           columnIndex: this.columnIndex,
         });
@@ -73,8 +75,8 @@
       blur(evt) {
         evt.target.blur();
       },
-      updateColumn() {
-        this.$store.commit('updateColumn', {
+      _updateColumn() {
+        this.updateColumn({
           boardIndex: this.boardIndex,
           columnIndex: this.columnIndex,
           column: this.column,
@@ -82,8 +84,8 @@
 
         this.nameEditing = false;
       },
-      removeColumn() {
-        this.$store.dispatch('removeColumn', {
+      _removeColumn() {
+        this.removeColumn({
           boardIndex: this.boardIndex,
           columnIndex: this.columnIndex,
         });

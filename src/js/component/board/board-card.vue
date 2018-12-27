@@ -17,6 +17,8 @@
 </template>
 
 <script>
+  import { mapActions } from 'vuex';
+
   export default {
     props: {
       boardIndex: Number,
@@ -30,15 +32,17 @@
       }
     },
     methods: {
+      ...mapActions(['updateCard']),
+
       blur() {
         this.editable = false;
 
-        this.$store.commit('updateCard', {
+        this.updateCard({
           boardIndex: this.boardIndex,
           columnIndex: this.columnIndex,
           cardIndex: this.cardIndex,
           card: this.card,
-        })
+        });
       },
       edit() {
         this.editable = true;

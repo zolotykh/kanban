@@ -130,7 +130,7 @@
             hoveredColumn.columnIndex = this.columnIndex;
 
             this.$store.commit('hoveredColumn', hoveredColumn);
-            this.$store.commit('displayedColumns');
+            this.$store.dispatch('displayedColumns');
           }
         }
 

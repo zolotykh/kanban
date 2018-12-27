@@ -39,8 +39,8 @@
         movableCard: (state) => state.movableCard,
         hoveredCard: (state) => state.hoveredCard,
 
-        displayedColumns: (state) => (state.displayedColumns || []).map((c) => c.i),
-        displayedCards: (state) => (state.displayedCards || []).map((c) => c.i),
+        displayedColumns: (state) => state.displayedColumns,
+        displayedCards: (state) => state.displayedCards,
 
         readyForColumnMoving: (state) => state.readyForColumnMoving,
         readyForCardMoving: (state) => state.readyForCardMoving,
