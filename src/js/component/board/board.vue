@@ -48,7 +48,7 @@
       classList() {
         return {
           'modal-card-open': 'card' === this.$route.name,
-        }
+        };
       },
     },
     data() {
@@ -61,7 +61,7 @@
           transform: null,
         },
         board: null,
-      }
+      };
     },
     created() {
       this.$set(this, 'board', this.$store.state.boards[this.boardIndex]);
@@ -111,8 +111,8 @@
           board: this.board,
           boardIndex: this.boardIndex,
         });
-      }
-    }
+      },
+    },
   };
 </script>
 

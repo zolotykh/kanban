@@ -177,7 +177,7 @@
         this.showPlaceholderBefore = false;
       },
     },
-  }
+  };
 </script>
 
 <style lang="sass">

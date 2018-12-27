@@ -150,8 +150,8 @@
           EventBus.$emit(EVENT_CARD_MOVING_PLACEMENT, null);
         }
       },
-    }
-  }
+    },
+  };
 </script>
 
 <style lang="sass">

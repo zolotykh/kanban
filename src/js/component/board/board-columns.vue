@@ -23,7 +23,7 @@
 
 <script>
   import BoardColumnContainer from './board-column-container';
-  import VuePerfectScrollbar from 'vue-perfect-scrollbar'
+  import VuePerfectScrollbar from 'vue-perfect-scrollbar';
 
   export default {
     components: { BoardColumnContainer, VuePerfectScrollbar },

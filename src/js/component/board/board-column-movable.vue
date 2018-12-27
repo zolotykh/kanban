@@ -26,7 +26,7 @@
       column: Object,
       styles: Object,
     },
-  }
+  };
 </script>
 
 <style lang="sass">

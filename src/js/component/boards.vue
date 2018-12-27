@@ -56,8 +56,8 @@
       removeBoard(boardIndex) {
         this.$store.dispatch('removeBoard', { boardIndex });
       },
-    }
-  }
+    },
+  };
 </script>
 
 <style lang="sass">

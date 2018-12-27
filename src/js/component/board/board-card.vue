@@ -50,8 +50,8 @@
       submit() {
         this.onBlur();
       },
-    }
-  }
+    },
+  };
 </script>
 
 <style lang="sass">

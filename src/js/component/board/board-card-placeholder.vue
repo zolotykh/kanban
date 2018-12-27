@@ -20,8 +20,8 @@
 
         return null;
       },
-    }
-  }
+    },
+  };
 </script>
 
 <style lang="sass">
