@@ -1,0 +1,42 @@
+html
+  font-size: 14px
+  font-family: 'Roboto', sans-serif
+  line-height: 1.2
+
+body
+  font: inherit
+  background-color: #0076C2
+  -moz-osx-font-smoothing: grayscale
+  -webkit-font-smoothing: antialiased
+  color: #fff
+
+  a
+    color: currentColor
+
+    &:hover
+      color: currentColor
+
+.moving
+  cursor: grabbing
+
+.app:not(.moving) .board-column
+  &:hover
+    cursor: grab
+
+  &:active
+    cursor: grabbing
+
+.app.moving .board-column
+  .board-column__name,
+  .cards-list
+    pointer-events: none
+
+.no-select
+  user-select: none
+
+.hide,
+.none
+  display: none
+
+h3
+  font-weight: 500

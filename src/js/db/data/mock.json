@@ -1,0 +1,64 @@
+{
+  "boards": [
+    {
+      "id": 0,
+      "name": "Development",
+      "columns": [
+        {
+          "id": 0,
+          "name": "Todo",
+          "cards": [
+            {
+              "id": 0,
+              "name": "Build"
+            },
+            {
+              "id": 1,
+              "name": "Deploy"
+            }
+          ]
+        },
+        {
+          "id": 1,
+          "name": "Doing",
+          "cards": [
+            {
+              "id": 2,
+              "name": "Make"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Test",
+          "cards": [
+            {
+              "id": 3,
+              "name": "Design"
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Deploy",
+          "cards": [
+            {
+              "id": 4,
+              "name": "Content"
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Done",
+          "cards": [
+            {
+              "id": 5,
+              "name": "Run"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

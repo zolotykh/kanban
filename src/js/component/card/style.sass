@@ -1,0 +1,81 @@
+.card
+  &,
+  &-backdrop
+    position: absolute
+    left: 0
+    top: 0
+    height: 100%
+    width: 100%
+
+  &-backdrop
+    background-color: rgba(#000, .7)
+    position: absolute
+    z-index: 1
+
+  &-body
+    position: absolute
+    z-index: 1
+    background-color: #EAEEF0
+    color: #222
+    border-radius: 5px
+    left: 50%
+    top: 50px
+    min-height: 300px
+    width: 580px
+    transform: translate(-50%, 0)
+    margin-top: -1px
+    padding: 20px
+
+  &__close
+    position: absolute
+    right: 0
+    top: 0
+    color: gray
+    border: 0
+    background-color: transparent
+    padding: 10px
+    transition: color .3s ease
+    cursor: pointer
+
+    &:hover
+      color: #000
+
+  &__title
+    font-size: (1rem * 20 / 14)
+    font-weight: 600
+    margin-left: -8px
+
+    &-text,
+    &-input
+      padding: 2px 8px 5px
+      width: 100%
+
+    &-input
+      font: inherit
+      border: 0
+      border-radius: 3px
+
+  &__address
+    font-size: (1rem * 13 / 14)
+    font-weight: 500
+    color: #565656
+    margin: 3px 0
+
+  h3
+    margin: 1.5rem 0 .3rem
+
+  &__description
+    width: 100%
+    border: 0
+    background-color: #D8DEE2
+    border-radius: 4px
+    padding: 10px 7px
+    min-height: 70px
+    margin: .4rem 0 1rem
+    overflow: hidden
+    overflow-wrap: break-word
+    resize: none
+    transition: background-color .3s ease
+
+    &:focus
+      background-color: #fff

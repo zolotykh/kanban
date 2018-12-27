@@ -1,0 +1,35 @@
+.actions
+  background-color: #fff
+  border-radius: 3px
+  padding: 7px 14px
+  width: auto
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .4)
+  z-index: 1
+  display: none
+
+  &--top-right
+    position: absolute
+    right: 0
+    top: 0
+
+  &:hover
+    display: block
+
+  &__action
+    list-style: none
+    padding: 7px 0
+
+.actions-toggle
+  border: 0
+  padding: 0 5px 3px
+  margin: 4px 0
+  background-color: transparent
+  color: gray
+  transition: color .3s ease
+  cursor: pointer
+
+  &:hover
+    color: #222
+
+  &:active + .actions
+    display: block
