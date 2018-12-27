@@ -145,7 +145,7 @@
           });
         }
       },
-      onMouseEnter(evt) {
+      onMouseEnter() {
         this.isHovered = true;
 
         if (this.movableCard) {
