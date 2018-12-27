@@ -46,11 +46,8 @@
       };
     },
     computed: {
-      ...mapState({
-        readyForCardMoving: (state) => state.readyForCardMoving,
-        hoveredCard: (state) => state.hoveredCard,
-        movableCard: (state) => state.movableCard,
-      }),
+      ...mapState(['readyForCardMoving', 'hoveredCard', 'movableCard']),
+
       /**
        * Show placeholder on movable card when hover not on another card in column
        * Can't use `isHovered` -> when mouse move outside of column

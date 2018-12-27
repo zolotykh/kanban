@@ -9,9 +9,8 @@
 
   export default {
     computed: {
-      ...mapState({
-        movableCard: (state) => state.movableCard,
-      }),
+      ...mapState(['movableCard']),
+
       style() {
         if (this.movableCard) {
           return {

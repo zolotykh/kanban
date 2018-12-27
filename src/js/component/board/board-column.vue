@@ -55,10 +55,7 @@
       };
     },
     computed: {
-      ...mapState({
-        movableCard: (state) => state.movableCard,
-        hoveredCard: (state) => state.hoveredCard,
-      }),
+      ...mapState(['movableCard', 'hoveredCard']),
     },
     methods: {
       ...mapActions(['addCard', 'updateColumn', 'removeColumn']),

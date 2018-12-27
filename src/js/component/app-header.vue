@@ -25,10 +25,8 @@
 
   export default {
     computed: {
-      ...mapState({
-        login: (state) => state.login,
-        isSuccessAuth: (state) => state.isSuccessAuth,
-      }),
+      ...mapState(['login', 'isSuccessAuth']),
+
       isRouteBoards() {
         return 'boards' === this.$route.name;
       },
