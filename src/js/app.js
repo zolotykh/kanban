@@ -227,7 +227,7 @@ const store = new Vuex.Store({
       commit('authorizationState', { accessToken, isSuccessAuth, login });
 
       if (isSuccessAuth) {
-        router.push('/');
+        router.push(router.history.current.query.redirect || '/');
       }
     },
     logout({ commit }) {
@@ -256,6 +256,10 @@ const routes = [
     path: '/login',
     name: 'login',
     component: LoginComponent,
+    meta: {
+      public: true,  // Allow access to even if not logged in
+      onlyWhenLoggedOut: true
+    }
   },
   {
     path: '/',
@@ -299,14 +303,36 @@ const router = new VueRouter({
   routes,
 });
 
+router.beforeEach((to, from, next) => {
+  const isPublic = to.matched.some(record => record.meta.public);
+
+  const onlyWhenLoggedOut = to.matched.some(record => record.meta.onlyWhenLoggedOut);
+
+  const loggedIn = !!store.state.isSuccessAuth;
+
+  if (!isPublic && !loggedIn) {
+    return next({
+      path:'/login',
+      query: { redirect: to.fullPath }  // Store the full path to redirect the user to after login
+    });
+  }
+
+  // Do not allow user to visit login page or register page if they are logged in
+  if (loggedIn && onlyWhenLoggedOut) {
+    return next('/')
+  }
+
+  next();
+});
+
 new Vue({
   el: APPLICATION_SELECTOR,
   store,
   router,
   template: '<app/>',
   mounted() {
-    if (!isSuccessAuth) {
-      router.push('/login');
-    }
+    // if (!isSuccessAuth) {
+    //   router.push('/login');
+    // }
   },
 });
