@@ -27,4 +27,16 @@ describe('mutations', () => {
     expect(state.displayedColumns[0].id).toBe(1);
     expect(state.displayedColumns[1].id).toBe(0);
   });
+
+  test('hoveredColumn', () => {
+    const { hoveredColumn } = mutations;
+
+    const state = {};
+
+    hoveredColumn(state, { id: 0 });
+
+    expect(state.hoveredColumn).toBeDefined();
+    expect(state.hoveredColumn).toBeInstanceOf(Object);
+    expect(state.hoveredColumn.id).toBe(0);
+  });
 });
