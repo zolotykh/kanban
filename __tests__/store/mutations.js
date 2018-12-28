@@ -429,4 +429,35 @@ describe('mutations', () => {
 
     expect(state.boards[0].columns[0].name).toEqual(updateColumnName);
   });
+
+  test('updateCard', () => {
+    const { updateCard } = mutations;
+
+    const state = {
+      boards: [
+        {
+          columns: [
+            {
+              cards: [
+                { name: 'Card name' },
+              ],
+            },
+          ],
+        },
+      ],
+    };
+
+    const updateColumnName = 'Updated card name';
+
+    updateCard(state, {
+      boardIndex: 0,
+      columnIndex: 0,
+      cardIndex: 0,
+      card: {
+        name: updateColumnName,
+      },
+    });
+
+    expect(state.boards[0].columns[0].cards[0].name).toEqual(updateColumnName);
+  });
 });
