@@ -122,12 +122,12 @@ const store = new Vuex.Store({
       state.readyForCardMoving = !!bool;
     },
     columnMovingEnd(state) {
-      if (store.state.movableColumn) {
-        if (store.state.hoveredColumn) {
-          const { boardIndex: fromBoardIndex, columnIndex: fromColumnIndex } = store.state.movableColumn;
-          const { boardIndex: toBoardIndex, columnIndex: toColumnIndex } = store.state.hoveredColumn;
+      if (state.movableColumn) {
+        if (state.hoveredColumn) {
+          const { boardIndex: fromBoardIndex, columnIndex: fromColumnIndex } = state.movableColumn;
+          const { boardIndex: toBoardIndex, columnIndex: toColumnIndex } = state.hoveredColumn;
 
-          const columns = store.state.boards[toBoardIndex].columns;
+          const columns = state.boards[toBoardIndex].columns;
           const column = columns.splice(fromColumnIndex, 1)[0];
 
           columns.splice(toColumnIndex, 0, column);
@@ -141,13 +141,13 @@ const store = new Vuex.Store({
       state.readyForColumnMoving = false;
     },
     cardMovingEnd(state) {
-      if (store.state.movableCard) {
+      if (state.movableCard) {
         if (cardMovingPlacement) {
-          const { boardIndex: fromBoardIndex, columnIndex: fromColumnIndex, cardIndex: fromCardIndex } = store.state.movableCard;
+          const { boardIndex: fromBoardIndex, columnIndex: fromColumnIndex, cardIndex: fromCardIndex } = state.movableCard;
           const { boardIndex: toBoardIndex, columnIndex: toColumnIndex, cardIndex: toCardIndex } = cardMovingPlacement;
 
-          const fromCards = store.state.boards[fromBoardIndex].columns[fromColumnIndex].cards;
-          const toCards = store.state.boards[toBoardIndex].columns[toColumnIndex].cards;
+          const fromCards = state.boards[fromBoardIndex].columns[fromColumnIndex].cards;
+          const toCards = state.boards[toBoardIndex].columns[toColumnIndex].cards;
 
           const card = fromCards.splice(fromCardIndex, 1)[0];
 
