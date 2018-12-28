@@ -297,4 +297,41 @@ describe('mutations', () => {
 
     expect(state.boards.length).toBe(0);
   });
+
+  test('removeColumn', () => {
+    const { removeColumn } = mutations;
+
+    const state = {
+      boards: [
+        {
+          columns: [
+            {id: 0},
+            {id: 1},
+            {id: 2},
+          ],
+        },
+        {
+          columns: [
+            {id: 3},
+            {id: 4},
+            {id: 5},
+          ],
+        }
+      ],
+    };
+
+    removeColumn(state, { boardIndex: 0, columnIndex: 1 });
+
+    expect(state.boards[0].columns).toEqual([
+      { id: 0 },
+      { id: 2 },
+    ]);
+
+    removeColumn(state, { boardIndex: 1, columnIndex: 2 });
+
+    expect(state.boards[1].columns).toEqual([
+      { id: 3 },
+      { id: 4 },
+    ]);
+  });
 });
