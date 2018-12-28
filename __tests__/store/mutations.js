@@ -460,4 +460,30 @@ describe('mutations', () => {
 
     expect(state.boards[0].columns[0].cards[0].name).toEqual(updateColumnName);
   });
+
+  test('authorizationState', () => {
+    const { authorizationState } = mutations;
+
+    const state = {};
+
+    const mutationProperties1 = {
+      accessToken: true,
+      isSuccessAuth: false,
+      login: true,
+    };
+
+    const mutationProperties2 = {
+      accessToken: true,
+      isSuccessAuth: false,
+      login: true,
+    };
+
+    authorizationState(state, mutationProperties1);
+
+    expect(state).toEqual(mutationProperties1);
+
+    authorizationState(state, mutationProperties2);
+
+    expect(state).toEqual(mutationProperties2);
+  });
 });
