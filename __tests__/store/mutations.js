@@ -377,4 +377,28 @@ describe('mutations', () => {
       { id: 4 },
     ]);
   });
+
+  test('updateBoard', () => {
+    const { updateBoard } = mutations;
+
+    const state = {
+      boards: [
+        {
+          id: 0,
+          name: 'Board name',
+        }
+      ],
+    };
+
+    const updatedBoardName = 'Updated board name';
+
+    updateBoard(state, {
+      boardIndex: 0,
+      board: {
+        name: updatedBoardName,
+      },
+    });
+
+    expect(state.boards[0].name).toEqual(updatedBoardName);
+  });
 });
