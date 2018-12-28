@@ -51,4 +51,16 @@ describe('mutations', () => {
     expect(state.movableColumn).toBeInstanceOf(Object);
     expect(state.movableColumn.id).toBe(0);
   });
+
+  test('hoveredCard', () => {
+    const { hoveredCard } = mutations;
+
+    const state = {};
+
+    hoveredCard(state, { id: 0 });
+
+    expect(state.hoveredCard).toBeDefined();
+    expect(state.hoveredCard).toBeInstanceOf(Object);
+    expect(state.hoveredCard.id).toBe(0);
+  });
 });
