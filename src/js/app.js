@@ -12,7 +12,7 @@ import BoardCardComponent from './component/board/board-card';
 
 import routes from './routes';
 
-import mutations from './store/mutations';
+import * as mutations from './store/mutations';
 
 import {generateToken, validate} from './auth';
 
