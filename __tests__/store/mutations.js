@@ -238,4 +238,17 @@ describe('mutations', () => {
       ]);
     });
   });
+
+  test('addBoard', () => {
+    const { addBoard } = mutations;
+
+    const state = {
+      boards: [],
+    };
+
+    addBoard(state);
+
+    expect(state.boards.length).toBe(1);
+    expect(Object.keys(state.boards[0]).sort()).toEqual(['columns', 'id', 'name']);
+  });
 });
