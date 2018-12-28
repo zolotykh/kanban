@@ -401,4 +401,32 @@ describe('mutations', () => {
 
     expect(state.boards[0].name).toEqual(updatedBoardName);
   });
+
+  test('updateColumn', () => {
+    const { updateColumn } = mutations;
+
+    const state = {
+      boards: [
+        {
+          columns: [
+            {
+              name: 'Column name',
+            },
+          ],
+        },
+      ],
+    };
+
+    const updateColumnName = 'Updated column name';
+
+    updateColumn(state, {
+      boardIndex: 0,
+      columnIndex: 0,
+      column: {
+        name: updateColumnName,
+      },
+    });
+
+    expect(state.boards[0].columns[0].name).toEqual(updateColumnName);
+  });
 });
