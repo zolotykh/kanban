@@ -103,4 +103,60 @@ describe('mutations', () => {
     readyForCardMoving(state, false);
     expect(state.readyForCardMoving).toBeFalsy();
   });
+
+  describe('columnMovingEnd', () => {
+    test('columnMovingEnd with empty state', () => {
+      const  { columnMovingEnd } = mutations;
+
+      const state = {};
+
+      columnMovingEnd(state);
+
+      expect(state.readyForColumnMoving).toBeFalsy();
+      expect(Object.keys(state)).toEqual(['readyForColumnMoving']);
+    });
+
+    test('columnMovingEnd with only on key "movableColumn" in state', () => {
+      const  { columnMovingEnd } = mutations;
+
+      const state = {
+        movableColumn: { id: 0 },
+      };
+
+      columnMovingEnd(state);
+
+      expect(Object.keys(state).sort()).toEqual([
+        'displayedColumns',
+        'hoveredColumn',
+        'movableColumn',
+        'readyForColumnMoving',
+      ]);
+    });
+
+    test('columnMovingEnd with "hoveredColumn" in state', () => {
+      const  { columnMovingEnd } = mutations;
+
+      const state = {
+        boards: [
+          {
+            columns: [
+              { id: 0 },
+              { id: 1 },
+              { id: 2 },
+            ],
+          },
+        ],
+        hoveredColumn: { boardIndex: 0, columnIndex: 1 },
+        movableColumn: { boardIndex: 0, columnIndex: 0 },
+      };
+
+      columnMovingEnd(state);
+
+      expect(state.boards[0].columns).toEqual([
+        { id: 1 },
+        { id: 0 },
+        { id: 2 },
+      ]);
+    });
+  });
 });
