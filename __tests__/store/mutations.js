@@ -89,4 +89,18 @@ describe('mutations', () => {
     readyForColumnMoving(state, false);
     expect(state.readyForColumnMoving).toBeFalsy();
   });
+
+  test('readyForCardMoving', () => {
+    const { readyForCardMoving } = mutations;
+
+    const state = {
+      readyForCardMoving: false
+    };
+
+    readyForCardMoving(state, true);
+    expect(state.readyForCardMoving).toBeTruthy();
+
+    readyForCardMoving(state, false);
+    expect(state.readyForCardMoving).toBeFalsy();
+  });
 });
