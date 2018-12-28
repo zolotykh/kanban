@@ -68,6 +68,7 @@ export function cardMovingEnd(state, {placement}) {
 
       const card = fromCards.splice(fromCardIndex, 1)[0];
 
+      console.log(card)
       toCards.splice(toCardIndex, 0, card);
     }
 

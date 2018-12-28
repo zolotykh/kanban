@@ -159,4 +159,83 @@ describe('mutations', () => {
       ]);
     });
   });
+
+  describe('cardMovingEnd', () => {
+    test('cardMovingEnd with empty state', () => {
+      const state = {};
+
+      const { cardMovingEnd } = mutations;
+
+      cardMovingEnd(state, {});
+
+      expect(state.readyForCardMoving).toBeFalsy();
+    });
+
+    test('cardMovingEnd with movableCard', () => {
+      const state = {
+        boards: [
+          {
+            id: 0,
+            columns: [
+              {
+                id: 0,
+                cards: [
+                  { id: 0 },
+                  { id: 1 },
+                  { id: 2 },
+                ],
+              },
+              {
+                id: 1,
+                cards: [
+                  { id: 3 },
+                  { id: 4 },
+                  { id: 5 },
+                  { id: 6 },
+                ],
+              }
+            ]
+          }
+        ],
+        hoveredCard: {
+          boardIndex: 0,
+          columnIndex: 0,
+          cardIndex: 1,
+        },
+        movableCard: {
+          boardIndex: 0,
+          columnIndex: 1,
+          cardIndex: 2,
+        },
+      };
+
+      const { cardMovingEnd } = mutations;
+
+      cardMovingEnd(state, {
+        placement: {
+          boardIndex: 0,
+          columnIndex: 0,
+          cardIndex: 1,
+        },
+      });
+
+      expect(state.hoveredCard).toBeNull();
+      expect(state.movableCard).toBeNull();
+
+      expect(state.readyForCardMoving).toBeFalsy();
+
+      expect(state.boards[0].columns[0].cards).toEqual([
+        { id: 0 },
+        { id: 5 },
+        { id: 1 },
+        { id: 2 },
+      ]);
+
+      expect(state.boards[0].columns[1].cards).toEqual([
+        { id: 3 },
+        { id: 4 },
+        { id: 6 },
+      ]);
+    });
+  });
 });
