@@ -367,7 +367,7 @@ router.beforeEach((to, from, next) => {
   next();
 });
 
-new Vue({
+const App = new Vue({
   el: APPLICATION_SELECTOR,
   store,
   router,
