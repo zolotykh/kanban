@@ -290,12 +290,19 @@ describe('mutations', () => {
     const { removeBoard } = mutations;
 
     const state = {
-      boards: [{}],
+      boards: [
+        { id: 0 },
+        { id: 1 },
+        { id: 2 },
+      ],
     };
 
-    removeBoard(state, { boardIndex: 0 });
+    removeBoard(state, { boardIndex: 1 });
 
-    expect(state.boards.length).toBe(0);
+    expect(state.boards).toEqual([
+      { id: 0 },
+      { id: 2 },
+    ]);
   });
 
   test('removeColumn', () => {
