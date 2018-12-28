@@ -285,4 +285,16 @@ describe('mutations', () => {
     expect(state.boards[0].columns[0].cards.length).toBe(1);
     expect(Object.keys(state.boards[0].columns[0].cards[0]).sort()).toEqual(['name']);
   });
+
+  test('removeBoard', () => {
+    const { removeBoard } = mutations;
+
+    const state = {
+      boards: [{}],
+    };
+
+    removeBoard(state, { boardIndex: 0 });
+
+    expect(state.boards.length).toBe(0);
+  });
 });
