@@ -117,6 +117,7 @@
         overflow: hidden
         max-width: calc(100% - 40px)
         text-overflow: ellipsis
+        min-width: 100px
 
       &-input
         background-color: transparent
