@@ -75,4 +75,18 @@ describe('mutations', () => {
     expect(state.movableCard).toBeInstanceOf(Object);
     expect(state.movableCard.id).toBe(0);
   });
+
+  test('readyForColumnMoving', () => {
+    const { readyForColumnMoving } = mutations;
+
+    const state = {
+      readyForColumnMoving: false
+    };
+
+    readyForColumnMoving(state, true);
+    expect(state.readyForColumnMoving).toBeTruthy();
+
+    readyForColumnMoving(state, false);
+    expect(state.readyForColumnMoving).toBeFalsy();
+  });
 });
