@@ -486,4 +486,22 @@ describe('mutations', () => {
 
     expect(state).toEqual(mutationProperties2);
   });
+
+  test('logout', () => {
+    const { logout } = mutations;
+
+    const state = {
+      accessToken: '37ddc985c540264224e3ec762ebcd86f9c9e31f793a9da02ded34afd05b914cb',
+      login: 'login',
+      isSuccessAuth: true,
+    };
+
+    logout(state);
+
+    expect(state).toEqual({
+      accessToken: null,
+      login: null,
+      isSuccessAuth: false,
+    });
+  });
 });
