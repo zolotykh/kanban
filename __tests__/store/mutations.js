@@ -341,4 +341,40 @@ describe('mutations', () => {
       { id: 4 },
     ]);
   });
+
+  test('removeCard', () => {
+    const { removeCard } = mutations;
+
+    const state = {
+      boards: [
+        {
+          columns: [
+            {},
+            {
+              cards: [
+                { id: 0 },
+                { id: 1 },
+                { id: 2 },
+                { id: 3 },
+                { id: 4 },
+              ],
+            },
+          ],
+        },
+      ],
+    };
+
+    removeCard(state, {
+      boardIndex: 0,
+      columnIndex: 1,
+      cardIndex: 3,
+    });
+
+    expect(state.boards[0].columns[1].cards).toEqual([
+      { id: 0 },
+      { id: 1 },
+      { id: 2 },
+      { id: 4 },
+    ]);
+  });
 });
