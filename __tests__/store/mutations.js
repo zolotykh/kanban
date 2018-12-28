@@ -251,4 +251,19 @@ describe('mutations', () => {
     expect(state.boards.length).toBe(1);
     expect(Object.keys(state.boards[0]).sort()).toEqual(['columns', 'id', 'name']);
   });
+
+  test('addColumn', () => {
+    const { addColumn } = mutations;
+
+    const state = {
+      boards: [{
+        columns: [],
+      }],
+    };
+
+    addColumn(state, { boardIndex: 0 });
+
+    expect(state.boards[0].columns.length).toBe(1);
+    expect(Object.keys(state.boards[0].columns[0]).sort()).toEqual(['cards', 'id', 'name']);
+  });
 });
