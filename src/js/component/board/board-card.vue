@@ -71,6 +71,7 @@
       cursor: text
       display: inline-block
       padding-top: 3px
+      min-width: 100px
 
     &__name,
     &__name-input
