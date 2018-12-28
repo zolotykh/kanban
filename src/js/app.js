@@ -10,8 +10,6 @@ import { read as readPersistent, write as writePersistent } from './db/index';
 
 import { validate, generateToken } from './auth';
 
-import { EventBus, EVENT_CARD_MOVING_PLACEMENT } from './event-bus';
-
 import AppComponent from './component/app';
 
 import LoginComponent from './component/auth/login';
@@ -53,13 +51,6 @@ Vue.directive('focus', {
     el.focus();
   },
 });
-
-/**
- * Where card will be placed in board.
- *
- * @type {null|{boardIndex, columnIndex, cardIndex}}
- */
-let cardMovingPlacement;
 
 const storeWritePersistentPlugin = (store) => store.subscribe((mutation, state) => writePersistent(Object.assign(data, state)));
 
@@ -140,11 +131,11 @@ const store = new Vuex.Store({
 
       state.readyForColumnMoving = false;
     },
-    cardMovingEnd(state) {
+    cardMovingEnd(state, { placement }) {
       if (state.movableCard) {
-        if (cardMovingPlacement) {
+        if (placement) {
           const { boardIndex: fromBoardIndex, columnIndex: fromColumnIndex, cardIndex: fromCardIndex } = state.movableCard;
-          const { boardIndex: toBoardIndex, columnIndex: toColumnIndex, cardIndex: toCardIndex } = cardMovingPlacement;
+          const { boardIndex: toBoardIndex, columnIndex: toColumnIndex, cardIndex: toCardIndex } = placement;
 
           const fromCards = state.boards[fromBoardIndex].columns[fromColumnIndex].cards;
           const toCards = state.boards[toBoardIndex].columns[toColumnIndex].cards;
@@ -156,8 +147,6 @@ const store = new Vuex.Store({
 
         state.movableCard = null;
         state.hoveredCard = null;
-
-        cardMovingPlacement = null;
       }
 
       state.readyForCardMoving = false;
@@ -240,8 +229,8 @@ const store = new Vuex.Store({
     columnMovingEnd({ commit }) {
       commit('columnMovingEnd');
     },
-    cardMovingEnd({ commit }) {
-      commit('cardMovingEnd');
+    cardMovingEnd({ commit }, payload) {
+      commit('cardMovingEnd', payload);
     },
     movableCard({ commit }, card) {
       commit(card);
@@ -282,10 +271,6 @@ const store = new Vuex.Store({
       router.push('/login');
     },
   },
-});
-
-EventBus.$on(EVENT_CARD_MOVING_PLACEMENT, (placement) => {
-  cardMovingPlacement = placement;
 });
 
 const routes = [

@@ -21,6 +21,7 @@
 </template>
 
 <script>
+  import { EventBus, EVENT_CARD_MOVING_PLACEMENT } from '../../event-bus';
   import { mapActions, mapState } from 'vuex';
   import BoardColumns from './board-columns';
   import BoardColumnMovable from "./board-column-movable";
@@ -61,6 +62,13 @@
           transform: null,
         },
         board: null,
+
+        /**
+         * Where card will be placed in board.
+         *
+         * @type {null|{boardIndex, columnIndex, cardIndex}}
+         */
+        cardMovingPlacement: null,
       };
     },
     created() {
@@ -89,14 +97,24 @@
           this.columnMovingEnd();
         }
         else if (this.readyForCardMoving) {
-          this.cardMovingEnd();
+          this.cardMovingEnd({ placement: this.cardMovingPlacement});
+
+          this.cardMovingPlacement = null;
         }
       };
+
+      this.onCardMovingPlacement = (placement) => {
+        this.$set(this, 'cardMovingPlacement', placement);
+      };
+
+      EventBus.$on(EVENT_CARD_MOVING_PLACEMENT, this.onCardMovingPlacement);
 
       document.addEventListener('mousemove', this.onMouseMove);
       document.addEventListener('mouseup', this.onMouseUp);
     },
     beforeDestroy() {
+      EventBus.$off(EVENT_CARD_MOVING_PLACEMENT, this.onCardMovingPlacement);
+
       document.removeEventListener('mousemove', this.onMouseMove);
       document.removeEventListener('mouseup', this.onMouseUp);
     },
