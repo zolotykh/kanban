@@ -24,5 +24,5 @@ export default function localStorageDriver(storageKey) {
 
       localStorage.setItem(storageKey, dump);
     },
-  }
+  };
 };
