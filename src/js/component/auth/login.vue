@@ -35,7 +35,7 @@
         <p>Authorization error: incorrect login or password.</p>
 
         <div>
-          To see demo use <strong>omega-r</strong> and <strong>demo</strong>.
+          To see demo use <strong>demo</strong> and <strong>demo</strong>.
         </div>
       </div>
 
